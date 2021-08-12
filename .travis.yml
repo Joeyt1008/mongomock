@@ -7,22 +7,7 @@ env:
     - MONGODB=4.4.0
 jobs:
   include:
-    - python: 2.7
-      env: TOX_ENV=py27
-    - python: 2.7
-      env: TOX_ENV=py27-mock-pymongo-pyexecjs
-    - python: pypy
-      env: TOX_ENV=pypy-mock-pymongo-pyexecjs
-    - python: 3.4
-      env: TOX_ENV=py34-pymongo-pyexecjs
-    - python: 3.5
-      env: TOX_ENV=py35-pymongo-pyexecjs
-    - python: 3.6
-      env: TOX_ENV=py36-pymongo-pyexecjs
-    - python: 3.7
-      env: TOX_ENV=py37-pymongo-pyexecjs
-    - python: 3.9
-      env: TOX_ENV=py39-pymongo-pyexecjs
+
     - python: 3.8
       env: TOX_ENV=py38
     - python: 3.8
