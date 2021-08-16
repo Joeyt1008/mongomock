@@ -1,12 +1,12 @@
 language: python
 cache: pip
 os: linux
-dist: Bionic # OS+dist should be kept in sync with Dockerfile
+dist: focal # OS+dist should be kept in sync with Dockerfile
 arch:
   - arm64
 env:
   global: # MongoDB version should be kept in sync with docker-compose image
-    - MONGODB=4.2.0
+    - MONGODB=5.0.0
 jobs:
   include:
 
@@ -30,12 +30,13 @@ before_script:
 after_script:
   - pkill mongod
 install:
-  - wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | apt-key add -
+  - wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -
   - apt-get install gnupg
-  - wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | apt-key add -
-  - echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+  - wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -
+  - echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list
   - apt-get update
-  - apt-get install -y mongodb-org
+  - apt-get install -y mongodb-org=5.0.2 mongodb-org-database=5.0.2 mongodb-org-server=5.0.2 mongodb-org-shell=5.0.2 mongodb-org-mongos=5.0.2 mongodb-org-tools=5.0.2
+
   - ps --no-headers -o comm 1
   - service mongod start
   - service mongod status
