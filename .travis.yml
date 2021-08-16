@@ -6,7 +6,7 @@ arch:
   - arm64
 env:
   global: # MongoDB version should be kept in sync with docker-compose image
-    - MONGODB=5.0.0
+    - MONGODB=5.0.2
 jobs:
   include:
     - python: 3.8
@@ -34,7 +34,8 @@ install:
   - echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
   - sudo apt-get update
   - sudo apt-get install -y mongodb-org=5.0.2 mongodb-org-database=5.0.2 mongodb-org-server=5.0.2 mongodb-org-shell=5.0.2 mongodb-org-mongos=5.0.2 mongodb-org-tools=5.0.2
-
+  - echo ${PWD}/mongodb-linux-aarch64-ubuntu2004-${MONGODB}/bin/mongodb
+  - whereis mongodb
   - ps --no-headers -o comm 1
   - sudo service mongod start
   - sudo service mongod status
