@@ -2,7 +2,8 @@ language: python
 cache: pip
 os: linux
 dist: Bionic # OS+dist should be kept in sync with Dockerfile
-
+arch:
+  - arm64
 env:
   global: # MongoDB version should be kept in sync with docker-compose image
     - MONGODB=4.2.0
