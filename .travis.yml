@@ -37,7 +37,7 @@ install:
   - ps --no-headers -o comm 1
   - sudo service mongod start
   - sudo service mongod status
-  - mkdir ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongod
+  - mkdir -p ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongod
   - cp /usr/bin/mongod ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongod
   - ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongod --version
 
