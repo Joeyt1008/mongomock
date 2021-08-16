@@ -11,20 +11,14 @@ jobs:
   include:
     - python: 3.8
       env: TOX_ENV=py38
-    - python: 3.8
-      env: TOX_ENV=py38-pyexecjs
-    - python: 3.8
-      env: TOX_ENV=py38-pymongo361-pyexecjs
+
 
 script:
   - tox -e $TOX_ENV
 before_install:
   - "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10"
   - "sudo apt-get update"
-before_script:
-  - mkdir ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/data
-  - ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongodb --dbpath ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/data --logpath ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/mongodb.log --fork
-  - "until nc -z localhost 27017; do echo Waiting for MongoDB; sleep 1; done"
+
 after_script:
   - pkill mongod
 install:
@@ -34,16 +28,8 @@ install:
   - echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
   - sudo apt-get update
   - sudo apt-get install -y mongodb-org=5.0.2 mongodb-org-database=5.0.2 mongodb-org-server=5.0.2 mongodb-org-shell=5.0.2 mongodb-org-mongos=5.0.2 mongodb-org-tools=5.0.2
-  - echo ${PWD}/mongodb-linux-aarch64-ubuntu2004-${MONGODB}/bin/mongodb
-  - file /home/travis/build/Joeyt1008/mongomock/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongodb
-  - ls 
-  - pwd
-  - cd /home/travis/build/Joeyt1008/mongomock/mongodb-linux-aarch64-ubuntu2004-5.0.2/
-  - ls
-  - cd /home/travis/build/Joeyt1008/mongomock/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin
-  - ls
-  - cd /home/travis/build/Joeyt1008/mongomock/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongodb
-  - ls
+  - echo ${PWD}/mongodb-linux-aarch64-ubuntu2004-${MONGODB}/bin/mongod
+
   - whereis mongodb
   - ls
   - pwd
@@ -51,6 +37,5 @@ install:
   - sudo service mongod start
   - sudo service mongod status
 
-  - ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongodb --version
   - pip install tox
 
