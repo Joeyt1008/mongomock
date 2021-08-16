@@ -9,14 +9,12 @@ env:
     - MONGODB=5.0.0
 jobs:
   include:
-
     - python: 3.8
       env: TOX_ENV=py38
     - python: 3.8
       env: TOX_ENV=py38-pyexecjs
     - python: 3.8
       env: TOX_ENV=py38-pymongo361-pyexecjs
-
 
 script:
   - tox -e $TOX_ENV
@@ -43,13 +41,4 @@ install:
 
   - ${PWD}/mongodb-linux-aarch64-ubuntu1804-${MONGODB}/bin/mongodb --version
   - pip install tox
-deploy:
-  provider: pypi
-  username: vmalloc
-  distributions: "bdist_wheel sdist"
-  password:
-    secure: sNOkUNFfWKGsRy4BI+1jyqycZGSMiXTLtpCrX1mTuvjddbndULrHL3ecIPsCno49/nPR4Gww+e9U3HXc8LKJ9qR4mJ8bVCNiHO5GlGVnpV+wdGh9LVnsU1LWwuD8uWlLyTSOKP+ZmerCw7tGACYiv0e9zp8SqZXCH6VS+sAGFxU=
-  on:
-    tags: true
-    all_branches: true
-    repo: mongomock/mongomock
+
