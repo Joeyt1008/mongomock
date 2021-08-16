@@ -22,8 +22,8 @@ before_install:
   - "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10"
   - "sudo apt-get update"
 before_script:
-  - mkdir ${PWD}/mongodb-linux-aarch64-ubuntu2004-${MONGODB}/data
-  - ${PWD}/mongodb-linux-aarch64-ubuntu2004-${MONGODB}/bin/mongodb --dbpath ${PWD}/mongodb-linux-aarch64-ubuntu2004-${MONGODB}/data --logpath ${PWD}/mongodb-linux-aarch64-ubuntu2004-${MONGODB}/mongodb.log --fork
+  - mkdir ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/data
+  - ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongodb --dbpath ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/data --logpath ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/mongodb.log --fork
   - "until nc -z localhost 27017; do echo Waiting for MongoDB; sleep 1; done"
 after_script:
   - pkill mongod
@@ -35,11 +35,22 @@ install:
   - sudo apt-get update
   - sudo apt-get install -y mongodb-org=5.0.2 mongodb-org-database=5.0.2 mongodb-org-server=5.0.2 mongodb-org-shell=5.0.2 mongodb-org-mongos=5.0.2 mongodb-org-tools=5.0.2
   - echo ${PWD}/mongodb-linux-aarch64-ubuntu2004-${MONGODB}/bin/mongodb
+  - file /home/travis/build/Joeyt1008/mongomock/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongodb
+  - ls 
+  - pwd
+  - cd /home/travis/build/Joeyt1008/mongomock/mongodb-linux-aarch64-ubuntu2004-5.0.2/
+  - ls
+  - cd /home/travis/build/Joeyt1008/mongomock/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin
+  - ls
+  - cd /home/travis/build/Joeyt1008/mongomock/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongodb
+  - ls
   - whereis mongodb
+  - ls
+  - pwd
   - ps --no-headers -o comm 1
   - sudo service mongod start
   - sudo service mongod status
 
-  - ${PWD}/mongodb-linux-aarch64-ubuntu2004-${MONGODB}/bin/mongodb --version
+  - ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongodb --version
   - pip install tox
 
