@@ -1,11 +1,11 @@
 language: python
 cache: pip
 os: linux
-dist: xenial # OS+dist should be kept in sync with Dockerfile
+dist: Bionic # OS+dist should be kept in sync with Dockerfile
 
 env:
   global: # MongoDB version should be kept in sync with docker-compose image
-    - MONGODB=4.4.0
+    - MONGODB=4.2.0
 jobs:
   include:
 
@@ -23,15 +23,23 @@ before_install:
   - "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10"
   - "sudo apt-get update"
 before_script:
-  - mkdir ${PWD}/mongodb-linux-x86_64-ubuntu1604-${MONGODB}/data
-  - ${PWD}/mongodb-linux-x86_64-ubuntu1604-${MONGODB}/bin/mongod --dbpath ${PWD}/mongodb-linux-x86_64-ubuntu1604-${MONGODB}/data --logpath ${PWD}/mongodb-linux-x86_64-ubuntu1604-${MONGODB}/mongodb.log --fork
+  - mkdir ${PWD}/mongodb-linux-aarch64-ubuntu1804-${MONGODB}/data
+  - ${PWD}/mongodb-linux-aarch64-ubuntu1604-${MONGODB}/bin/mongodb --dbpath ${PWD}/mongodb-linux-aarch64-ubuntu1804-${MONGODB}/data --logpath ${PWD}/mongodb-linux-aarch64-ubuntu1804-${MONGODB}/mongodb.log --fork
   - "until nc -z localhost 27017; do echo Waiting for MongoDB; sleep 1; done"
 after_script:
   - pkill mongod
 install:
-  - wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1604-${MONGODB}.tgz
-  - tar xzf mongodb-linux-x86_64-ubuntu1604-${MONGODB}.tgz
-  - ${PWD}/mongodb-linux-x86_64-ubuntu1604-${MONGODB}/bin/mongod --version
+  - wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | apt-key add -
+  - apt-get install gnupg
+  - wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | apt-key add -
+  - echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+  - apt-get update
+  - apt-get install -y mongodb-org
+  - ps --no-headers -o comm 1
+  - service mongod start
+  - service mongod status
+
+  - ${PWD}/mongodb-linux-aarch64-ubuntu1804-${MONGODB}/bin/mongodb --version
   - pip install tox
 deploy:
   provider: pypi
