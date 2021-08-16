@@ -22,8 +22,8 @@ before_install:
   - "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10"
   - "sudo apt-get update"
 before_script:
-  - mkdir ${PWD}/mongodb-linux-aarch64-ubuntu1804-${MONGODB}/data
-  - ${PWD}/mongodb-linux-aarch64-ubuntu1604-${MONGODB}/bin/mongodb --dbpath ${PWD}/mongodb-linux-aarch64-ubuntu1804-${MONGODB}/data --logpath ${PWD}/mongodb-linux-aarch64-ubuntu1804-${MONGODB}/mongodb.log --fork
+  - mkdir ${PWD}/mongodb-linux-aarch64-ubuntu2004-${MONGODB}/data
+  - ${PWD}/mongodb-linux-aarch64-ubuntu2004-${MONGODB}/bin/mongodb --dbpath ${PWD}/mongodb-linux-aarch64-ubuntu2004-${MONGODB}/data --logpath ${PWD}/mongodb-linux-aarch64-ubuntu2004-${MONGODB}/mongodb.log --fork
   - "until nc -z localhost 27017; do echo Waiting for MongoDB; sleep 1; done"
 after_script:
   - pkill mongod
@@ -39,6 +39,6 @@ install:
   - sudo service mongod start
   - sudo service mongod status
 
-  - ${PWD}/mongodb-linux-aarch64-ubuntu1804-${MONGODB}/bin/mongodb --version
+  - ${PWD}/mongodb-linux-aarch64-ubuntu2004-${MONGODB}/bin/mongodb --version
   - pip install tox
 
