@@ -37,7 +37,7 @@ install:
   - whereis mongod
   - ls
   - pwd
-  - cd /usr/bin/mongod
+  - cd usr/bin/mongod
   - ls
   - pwd
   - ps --no-headers -o comm 1
