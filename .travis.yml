@@ -1,11 +1,12 @@
 language: python
 cache: pip
 os: linux
-dist: xenial # OS+dist should be kept in sync with Dockerfile
-
+dist: focal # OS+dist should be kept in sync with Dockerfile
+arch:
+  - arm64
 env:
   global: # MongoDB version should be kept in sync with docker-compose image
-    - MONGODB=4.4.0
+    - MONGODB=5.0.2
 jobs:
   include:
     - python: 3.8
@@ -25,17 +26,19 @@ before_install:
   - "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10"
   - "sudo apt-get update"
 before_script:
-  - mkdir ${PWD}/mongodb-linux-x86_64-ubuntu1604-${MONGODB}/data
-  - ${PWD}/mongodb-linux-x86_64-ubuntu1604-${MONGODB}/bin/mongod --dbpath ${PWD}/mongodb-linux-x86_64-ubuntu1604-${MONGODB}/data --logpath ${PWD}/mongodb-linux-x86_64-ubuntu1604-${MONGODB}/mongodb.log --fork
+  - mkdir ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/data
+  - ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongod --dbpath ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/data --logpath ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/mongodb.log --fork
   - "until nc -z localhost 27017; do echo Waiting for MongoDB; sleep 1; done"
+  - echo =====================================================================================================================
   - echo $prev_name
   - echo $name
-  - print $prev_name
+  - echo $d
+  - echo $prev_value
+  - echo =====================================================================================================================
 after_script:
   - pkill mongod
 install:
-  - wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1604-${MONGODB}.tgz
-  - tar xzf mongodb-linux-x86_64-ubuntu1604-${MONGODB}.tgz
-  - ${PWD}/mongodb-linux-x86_64-ubuntu1604-${MONGODB}/bin/mongod --version
+  - wget https://fastdl.mongodb.org/linux/mongodb-linux-aarch64-ubuntu2004-5.0.2.tgz
+  - tar xzf mongodb-linux-aarch64-ubuntu2004-5.0.2.tgz
+  - ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongod --version
   - pip install tox pymongo
-
