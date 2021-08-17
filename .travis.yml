@@ -37,6 +37,9 @@ install:
   - whereis mongod
   - ls
   - pwd
+  - cd /usr/bin/mongod
+  - ls
+  - pwd
   - ps --no-headers -o comm 1
   - sudo service mongod start
   - sudo service mongod status
