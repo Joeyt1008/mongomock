@@ -21,7 +21,7 @@ before_install:
   - "sudo apt-get update"
 before_script:
   - mkdir ${PWD}/mongodb-linux-aarch64-ubuntu1804-4.4.8/data
-  - ${PWD}/mongodb-linux-aarch64-ubuntu1804-4.4.8/bin/mongod --dbpath ${PWD}/mongodb-linux-aarch64-ubuntu1804-4.4.8/data --logpath ${PWDmongodb-linux-aarch64-ubuntu1804-4.4.8/mongodb.log --fork
+  - ${PWD}/mongodb-linux-aarch64-ubuntu1804-4.4.8/bin/mongod --dbpath ${PWD}/mongodb-linux-aarch64-ubuntu1804-4.4.8/data --logpath ${PWD}/mongodb-linux-aarch64-ubuntu1804-4.4.8/mongodb.log --fork
   - "until nc -z localhost 27017; do echo Waiting for MongoDB; sleep 1; done"
 after_script:
   - pkill mongod
