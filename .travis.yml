@@ -37,5 +37,5 @@ install:
   - wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1604-${MONGODB}.tgz
   - tar xzf mongodb-linux-x86_64-ubuntu1604-${MONGODB}.tgz
   - ${PWD}/mongodb-linux-x86_64-ubuntu1604-${MONGODB}/bin/mongod --version
-  - pip install tox
+  - pip install tox pymongo
 
