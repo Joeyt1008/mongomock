@@ -39,7 +39,5 @@ install:
   - sudo service mongod status
   - mkdir -p ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongod
   - cp /usr/bin/mongod ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongod
-  - ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongod --version
-
   - pip install tox
 
