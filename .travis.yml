@@ -6,7 +6,7 @@ arch:
   - arm64
 env:
   global: # MongoDB version should be kept in sync with docker-compose image
-    - MONGODB=5.0.2
+    - MONGODB=4.4.8
 jobs:
   include:
     - python: 3.8
@@ -26,8 +26,8 @@ before_install:
   - "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10"
   - "sudo apt-get update"
 before_script:
-  - mkdir ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/data
-  - ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongod --dbpath ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/data --logpath ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/mongodb.log --fork
+  - mkdir ${PWD}/mongodb-linux-aarch64-ubuntu2004-4.4.8/data
+  - ${PWD}/mongodb-linux-aarch64-ubuntu2004-4.4.8/bin/mongod --dbpath ${PWD}/mongodb-linux-aarch64-ubuntu2004-4.4.8/data --logpath ${PWD}/mongodb-linux-aarch64-ubuntu2004-4.4.8/mongodb.log --fork
   - "until nc -z localhost 27017; do echo Waiting for MongoDB; sleep 1; done"
   - echo =====================================================================================================================
   - echo $prev_name
@@ -38,7 +38,7 @@ before_script:
 after_script:
   - pkill mongod
 install:
-  - wget https://fastdl.mongodb.org/linux/mongodb-linux-aarch64-ubuntu2004-5.0.2.tgz
-  - tar xzf mongodb-linux-aarch64-ubuntu2004-5.0.2.tgz
-  - ${PWD}/mongodb-linux-aarch64-ubuntu2004-5.0.2/bin/mongod --version
+  - wget https://fastdl.mongodb.org/linux/mongodb-linux-aarch64-ubuntu2004-4.4.8.tgz
+  - tar xzf mongodb-linux-aarch64-ubuntu2004-4.4.8.tgz
+  - ${PWD}/mongodb-linux-aarch64-ubuntu2004-4.4.8/bin/mongod --version
   - pip install tox pymongo
