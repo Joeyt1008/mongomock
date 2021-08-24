@@ -41,4 +41,4 @@ install:
   - wget https://fastdl.mongodb.org/linux/mongodb-linux-aarch64-ubuntu2004-4.4.8.tgz
   - tar xzf mongodb-linux-aarch64-ubuntu2004-4.4.8.tgz
   - ${PWD}/mongodb-linux-aarch64-ubuntu2004-4.4.8/bin/mongod --version
-  - pip install tox pymongo
+  - pip install tox
