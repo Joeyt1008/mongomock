@@ -11,16 +11,17 @@ jobs:
   include:
     - python: 3.8
       env: TOX_ENV=py38
-    #- python: 3.8
-    #  env: TOX_ENV=py38-pymongo
-    #- python: 3.8
-    #  env: TOX_ENV=py38-pyexecjs
-    #- python: 3.8
-    #  env: TOX_ENV=py38-pymongo361-pyexecjs
-    #- python: 3.8
-    #  env: TOX_ENV=py38-pymongo-pyexecjs
+    - python: 3.8
+      env: TOX_ENV=py38-pymongo
+    - python: 3.8
+      env: TOX_ENV=py38-pyexecjs
+    - python: 3.8
+      env: TOX_ENV=py38-pymongo361-pyexecjs
+    - python: 3.8
+      env: TOX_ENV=py38-pymongo-pyexecjs
 
 script:
+  - pip install tox
   - tox -e $TOX_ENV
 
 install:
