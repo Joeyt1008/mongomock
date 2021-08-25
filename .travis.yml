@@ -35,7 +35,7 @@ install:
   - sudo touch /etc/apt/sources.list.d/mongodb-org-4.4.list
   - echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
   - sudo apt-get update
-  - ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && export DEBIAN_FRONTEND=noninteractive && sudo apt-get install -y tzdata && dpkg-reconfigure --frontend noninteractive tzdata
+  - sudo ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && export DEBIAN_FRONTEND=noninteractive && sudo apt-get install -y tzdata && dpkg-reconfigure --frontend noninteractive tzdata
   - sudo apt-get install -y mongodb-org=4.4.8
   - echo "mongodb-org hold" | dpkg --set-selections
   - echo "mongodb-org-server hold" | dpkg --set-selections
@@ -44,7 +44,7 @@ install:
   - echo "mongodb-org-tools hold" | dpkg --set-selections
   - ps --no-headers -o comm 1 
   - echo ====================mongodb service starts============================================
-  - service mongodb start
-  - service mongodb status
+  - sudo service mongodb start
+  - sudo service mongodb status
   - echo ====================mongodb service started============================================
   - mongo
