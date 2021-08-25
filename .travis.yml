@@ -11,14 +11,14 @@ jobs:
   include:
     - python: 3.8
       env: TOX_ENV=py38
-    - python: 3.8
-      env: TOX_ENV=py38-pymongo
-    - python: 3.8
-      env: TOX_ENV=py38-pyexecjs
-    - python: 3.8
-      env: TOX_ENV=py38-pymongo361-pyexecjs
-    - python: 3.8
-      env: TOX_ENV=py38-pymongo-pyexecjs
+    #- python: 3.8
+    #  env: TOX_ENV=py38-pymongo
+    #- python: 3.8
+    #  env: TOX_ENV=py38-pyexecjs
+    #- python: 3.8
+    #  env: TOX_ENV=py38-pymongo361-pyexecjs
+    #- python: 3.8
+    #  env: TOX_ENV=py38-pymongo-pyexecjs
 
 script:
   - tox -e $TOX_ENV
@@ -44,7 +44,8 @@ install:
   - echo "mongodb-org-tools hold" | sudo dpkg --set-selections
   - ps --no-headers -o comm 1 
   - echo ====================mongodb service starts============================================
-  - sudo service mongodb start
-  - sudo service mongodb status
+  - sudo systemctl unmask mongod
+  - sudo service mongod start
+  - sudo service mongod status
   - echo ====================mongodb service started============================================
   - mongo
