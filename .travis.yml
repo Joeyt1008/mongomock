@@ -48,4 +48,3 @@ install:
   - sudo service mongod start
   - sudo service mongod status
   - echo ====================mongodb service started============================================
-  - mongo
