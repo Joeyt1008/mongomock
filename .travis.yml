@@ -9,12 +9,12 @@ env:
     - MONGODB=4.4.8
 jobs:
   include:
-    - python: 3.8
-      env: TOX_ENV=py38
+    #- python: 3.8
+    #  env: TOX_ENV=py38
     - python: 3.8
       env: TOX_ENV=py38-pymongo
-    - python: 3.8
-      env: TOX_ENV=py38-pyexecjs
+    #- python: 3.8
+    #  env: TOX_ENV=py38-pyexecjs
     - python: 3.8
       env: TOX_ENV=py38-pymongo361-pyexecjs
     - python: 3.8
@@ -49,3 +49,7 @@ install:
   - sudo service mongod start
   - sudo service mongod status
   - echo ====================mongodb service started============================================
+  - echo $prev_name
+  - echo $name
+  - echo $prev_value
+  - echo $value
