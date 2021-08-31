@@ -16,4 +16,5 @@ services:
 
   mongo:
     # The image chosen here should be kept in sync with the .travis.yml mongo version
-    image: mongo:4.4.0
+    image: mongo:4.4.8
+    #4.4.0
