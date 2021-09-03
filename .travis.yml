@@ -49,7 +49,7 @@ install:
   - sudo service mongod start
   - sudo service mongod status
   - echo ====================mongodb service started============================================
-  - print ("prev_name")
-  - print ("name")
-  - print ("prev_value")
-  - print ("value")
+  - print ("{prev_name}")
+  - print ("{name}")
+  - print ("{prev_value}")
+  - print ("{value}")
