@@ -114,6 +114,10 @@ def _assert_no_diff(results, ignore_order, sort_by):
             assert not d, _format_diff_message(prev_name, name, d)
         prev_name = name
         prev_value = value
+        print ("prev_name")
+        print ("name")
+        print ("prev_value")
+        print ("value")
 
 
 def _result_is_cursor(results):
